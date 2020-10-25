@@ -213,9 +213,12 @@ def assign_signal_uuids(flat_model):
 @deprecation.deprecated(deprecated_in="2.0", removed_in="2.0",
                         current_version="2.1",
                         details="Anytree as tree library introduced for typesafe handling of vss structure.")
-def load(file_name, include_paths):
+def load(file_name, include_paths, instantiate = True):
     flat_model = load_flat_model(file_name, "", include_paths)
-    flat_model_instances = expand_instances(flat_model)
+    if (instantiate):
+        flat_model_instances = expand_instances(flat_model)
+    else:
+        flat_model_instances = flat_model 
     absolute_path_flat_model = create_absolute_paths(flat_model_instances)
     absolute_path_flat_model_with_id = assign_signal_uuids(absolute_path_flat_model)
     deep_model = create_nested_model(absolute_path_flat_model_with_id, file_name)
@@ -242,9 +245,12 @@ def convert_yaml_to_list(raw_yaml):
 
 
 
-def load_tree(file_name, include_paths):
+def load_tree(file_name, include_paths, instantiate=True):
     flat_model = load_flat_model(file_name, "", include_paths)
-    flat_model_instances = expand_instances(flat_model)
+    if (instantiate):
+        flat_model_instances = expand_instances(flat_model)
+    else:
+        flat_model_instances = flat_model 
     absolute_path_flat_model = create_absolute_paths(flat_model_instances)
     absolute_path_flat_model_with_id = assign_signal_uuids(absolute_path_flat_model)
     deep_model = create_nested_model(absolute_path_flat_model_with_id, file_name)
