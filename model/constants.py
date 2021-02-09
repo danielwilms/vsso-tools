@@ -106,6 +106,7 @@ class VSSType(Enum):
     SENSOR = "sensor"
     ACTUATOR = "actuator"
     ELEMENT = "element"
+    DEPRECATION = "deprecation"
 
     @staticmethod
     def from_str(name):
