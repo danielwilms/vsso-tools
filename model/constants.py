@@ -81,6 +81,11 @@ class Unit(Enum):
     REVOLUTIONSPERMINUTE = "rpm"
     INCH = "inch"
     RATIO = "ratio"
+    METERSPERSECONDSQUAREDNEW = "m/s^2"
+    CUBICMETERNEW = "cm^3"
+    PASCALNEW = "Pa"
+    KILOPASCALNEW = "kPa"
+
 
     @staticmethod
     def from_str(name):

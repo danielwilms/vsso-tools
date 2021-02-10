@@ -30,6 +30,7 @@ class VSSNode(Node):
     min = ""
     max = ""
     enum = ""
+    ttl_name = ""
 
     default_value = ""
     value = ""
