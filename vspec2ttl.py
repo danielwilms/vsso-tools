@@ -66,16 +66,12 @@ def setup_graph():
     g = Graph()
     
     belongsTo = VssoConcepts.BELONGS_TO.uri
-    g.add((belongsTo, RDF.type, OWL.ObjectProperty))
-    g.add((belongsTo,RDFS.subPropertyOf, OWL.topObjectProperty))
-    g.add((belongsTo,RDFS.domain, VssoConcepts.VEHICLE_PROP.uri))
-    g.add((belongsTo,RDFS.domain, VssoConcepts.HAS_ATTRIBUTE.uri))
-    g.add((belongsTo,RDFS.range, VssoConcepts.VEHICLE_COMP.uri))
+    g.add((belongsTo, RDF.type, OWL.AnnotationProperty))
     g.add((belongsTo,RDFS.label, Literal(VssoConcepts.BELONGS_TO.value,lang="en")))
 
     holdsValue = VssoConcepts.HOLDS_VALUE.uri
-    g.add((holdsValue, RDF.type, OWL.DataProperty))
-    g.add((holdsValue,RDFS.subPropertyOf, OWL.topDataProperty))
+    g.add((holdsValue, RDF.type, OWL.DatatypeProperty))
+    g.add((holdsValue,RDFS.subPropertyOf, OWL.topDatatypeProperty))
     g.add((holdsValue,RDFS.domain, VssoConcepts.VEHICLE_PROP.uri))
     g.add((holdsValue,RDFS.label, Literal(VssoConcepts.HOLDS_VALUE.value,lang="en")))
 
@@ -83,19 +79,17 @@ def setup_graph():
     g.add((partOf, RDF.type, OWL.ObjectProperty))
     g.add((partOf,RDFS.subPropertyOf, OWL.topObjectProperty))
     g.add((partOf,RDFS.domain, VssoConcepts.VEHICLE_COMP.uri))
-    g.add((partOf,RDFS.range, VssoConcepts.VEHICLE_COMP.uri))
-    g.add((partOf,RDFS.range, VssoConcepts.VEHICLE.uri))
     g.add((partOf,RDFS.label, Literal("partOf",lang="en")))
 
     hasComponentInstance = VssoConcepts.HAS_COMP_INST.uri
-    g.add((hasComponentInstance, RDF.type, OWL.DataProperty))
-    g.add((hasComponentInstance,RDFS.subPropertyOf, OWL.topDataProperty))
+    g.add((hasComponentInstance, RDF.type, OWL.DatatypeProperty))
+    g.add((hasComponentInstance,RDFS.subPropertyOf, OWL.topDatatypeProperty))
     g.add((hasComponentInstance,RDFS.label, Literal(VssoConcepts.HAS_COMP_INST.value,lang="en")))
 
 
     hasAttribute = VssoConcepts.HAS_ATTRIBUTE.uri
-    g.add((hasAttribute, RDF.type, OWL.DataProperty))
-    g.add((hasAttribute,RDFS.subPropertyOf, OWL.topDataProperty))
+    g.add((hasAttribute, RDF.type, OWL.DatatypeProperty))
+    g.add((hasAttribute,RDFS.subPropertyOf, OWL.topDatatypeProperty))
     g.add((hasAttribute,RDFS.domain, VssoConcepts.VEHICLE.uri))
     g.add((hasAttribute,RDFS.label, Literal(VssoConcepts.HAS_ATTRIBUTE.value,lang="en")))
 
@@ -115,10 +109,10 @@ def setup_graph():
     g.add((vehicleComp,RDFS.label, Literal(VssoConcepts.VEHICLE_COMP.value,lang="en")))
 
 
-    vehicleSignal = VssoConcepts.VEHICLE_PROP.uri
-    g.add((vehicleSignal, RDF.type, OWL.Class))
-    g.add((vehicleSignal, RDF.type, RDFS.Class))
-    g.add((vehicleSignal,RDFS.label, Literal(VssoConcepts.VEHICLE_PROP.value,lang="en")))
+    vehicleProp = VssoConcepts.VEHICLE_PROP.uri
+    g.add((vehicleProp, RDF.type, OWL.Class))
+    g.add((vehicleProp, RDF.type, RDFS.Class))
+    g.add((vehicleProp,RDFS.label, Literal(VssoConcepts.VEHICLE_PROP.value,lang="en")))
 
 
     vehicleSignal = VssoConcepts.VEHICLE_SIGNAL.uri
@@ -240,7 +234,7 @@ def print_ttl_content(file, tree):
 
 
             if VSSType.ATTRIBUTE == tree_node.type:
-                graph.add((node, RDF.type, OWL.DataProperty))
+                graph.add((node, RDF.type, OWL.DatatypeProperty))
                 graph.add((node, RDFS.subPropertyOf, VssoConcepts.HAS_ATTRIBUTE.uri))
 
             else:
